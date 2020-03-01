@@ -147,7 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Divideandconquest.cpp" />
+    <ClCompile Include="Quicksort.cpp" />
     <ClCompile Include="Tablicesortowanie.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Divideandconquest.h" />
+    <ClInclude Include="Quicksort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
