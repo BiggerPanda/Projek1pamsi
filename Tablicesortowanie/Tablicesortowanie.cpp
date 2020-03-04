@@ -32,7 +32,7 @@ int main()
             cout << tab[i] << " ";
 
         cin.ignore();
-        
+        cin.get();
         return 0;
     
 }
