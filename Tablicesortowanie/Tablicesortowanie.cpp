@@ -3,38 +3,45 @@
 
 #include <iostream>
 #include "Quicksort.h"
+#include "Divideandconquest.h"
+#include"IntigerArr.h"
 
 int main()
 {
     
     using namespace std;
 
+    
+    //int* tab; 
+    //int* tab_pom; 
+    //int n;
 
-        int* tab, n;
-
-        //cout<<"Ile liczb będziesz chciał posortować? ";
-        cin >> n;
-        tab = new int[n]; //przydzielenie pamięci na elementy tablicy
-
+    //    //cout<<"Ile liczb będziesz chciał posortować? ";
+    //    cin >> n;
+    //    tab = new int[n]; //przydzielenie pamięci na elementy tablicy
+    //    tab_pom = new int[n];
         
         //wczytanie liczb
-        for (int i = 0; i < n; i++)
+      /*  for (int i = 0; i < n; i++)
             cin >> tab[i];
 
         for (int i = 0; i < n; i++)
             cout << tab[i] << " ";
         cout << endl;
 
-        quicksort_al(tab, 0, n - 1);
+        divideandsort(tab, 0, n - 1,tab_pom);*/
 
         //wypisanie posortowanych elementów
-        for (int i = 0; i < n; i++)
+    /*    for (int i = 0; i < n; i++)
             cout << tab[i] << " ";
 
         cin.ignore();
         cin.get();
         return 0;
-    
+ */   
+    cin.ignore();
+    cin.get();
+    return 0;
 }
 
 
