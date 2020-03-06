@@ -5,38 +5,41 @@
 #include "Quicksort.h"
 #include "Divideandconquest.h"
 #include"IntigerArr.h"
+#include"Introsort.h"
 
 int main()
 {
     
     using namespace std;
 
-    IntigerArr tab1(10000);
-    IntigerArr tab2(50000);
-    tab1.~IntigerArr();
-    tab2.~IntigerArr();
+    IntigerArr tab1(1000000);
+    Mergesort mer;
+    Introsort intr;
+   
+    
+    
     int* tab; 
     int* tab_pom; 
     int n;
 
-        //cout<<"Ile liczb będziesz chciał posortować? ";
-        cin >> n;
-        tab = new int[n]; //przydzielenie pamięci na elementy tablicy
-        tab_pom = new int[n];
+       // //cout<<"Ile liczb będziesz chciał posortować? ";
+       // cin >> n;
+        tab = new int[1000000]; //przydzielenie pamięci na elementy tablicy
+        tab_pom = new int[1000000];
         
        // wczytanie liczb
-        for (int i = 0; i < n; i++)
-            cin >> tab[i];
+       // for (int i = 0; i < n; i++)
+       //     cin >> tab[i];
 
-        for (int i = 0; i < n; i++)
-            cout << tab[i] << " ";
-        cout << endl;
-
-        divideandsort(tab, 0, n - 1,tab_pom);
-
+       // for (int i = 0; i < n; i++)
+       //     cout << tab[i] << " ";
+       // cout << endl;
+        cout << "start";
+       
+        mer.divideandsort(tab1.tab, 0, 1000000- 1,tab_pom);
+        cout << "end";
         //wypisanie posortowanych elementów
-        for (int i = 0; i < n; i++)
-            cout << tab[i] << " ";
+   
 
         cin.ignore();
         cin.get();
