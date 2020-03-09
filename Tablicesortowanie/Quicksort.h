@@ -7,6 +7,7 @@ auto swap = [](auto& numb1, auto& numb2)
 	numb2 = temp;
 };
 
+
 class QuicksSort {
 	int size;
 public:

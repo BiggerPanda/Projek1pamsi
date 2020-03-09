@@ -13,7 +13,7 @@ IntigerArr::IntigerArr(int _size)
 
 IntigerArr::~IntigerArr()
 {
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < this->size; i++)
 	{
 		std::cout << tab[i] << " ";
 	}
