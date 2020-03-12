@@ -14,7 +14,9 @@ public:
 	int size = 0;
 	int *tab;
 	IntigerArr();
-	IntigerArr(int size);
+	void randomize(int size,double percent);
+	void setsize(int size);
+	void setmemory(int size);
 	~IntigerArr();
 
 	
@@ -49,7 +51,7 @@ class Arrofarr
 	QuicksSort q;
 	Mergesort m;
 	Introsort in;
-	Arrofarr(int size);
+	Arrofarr(int size,double rand);
 	void Quicks();
 	void Merge();
 	void Intro();
