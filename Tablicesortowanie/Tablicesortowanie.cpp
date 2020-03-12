@@ -7,6 +7,8 @@
 #include"IntigerArr.h"
 #include"Introsort.h"
 
+
+
 int main()
 {
     
@@ -20,7 +22,8 @@ int main()
     
     int* tab; 
     int* tab_pom; 
-    
+    Arrofarr arr(n);
+
 
        // //cout<<"Ile liczb będziesz chciał posortować? ";
        // cin >> n;
@@ -31,12 +34,13 @@ int main()
        // for (int i = 0; i < n; i++)
        //     cin >> tab[i];
 
-        for (int i = 0; i < n; i++)
+        /*for (int i = 0; i < n; i++)
             cout << tab1.tab[i] << " ";
-        cout << endl;
+        cout << endl;*/
         cout << "start";
        
-        intr.introsort_al(tab1.tab, 0, n - 1, intr.depthlimit);
+        
+        arr.Quicks();
         cout << "end";
         //wypisanie posortowanych elementów
    
