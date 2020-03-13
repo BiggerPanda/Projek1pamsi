@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdlib>
 #include <iostream>
+#include <chrono>
 #include "Introsort.h"
 #include "Quicksort.h"
 #include "Divideandconquest.h"
@@ -52,6 +53,7 @@ class Arrofarr
 	Mergesort m;
 	Introsort in;
 	Arrofarr(int size,double rand);
+	
 	void Quicks();
 	void Merge();
 	void Intro();
