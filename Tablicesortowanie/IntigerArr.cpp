@@ -6,52 +6,53 @@
 IntigerArr::IntigerArr()
 {
 	
-	
+	//std::cout << "tab++";
 }
 
 void IntigerArr::randomize(int _size, double percent)
 {
-	this->setsize(size);
-	int restofsize = size - size * (percent / 100);
+	
+	int restofsize = _size - _size * (percent / 100);
 	if (percent >= 0) {
 		for (int i = 0; i < _size; i++)
 		{
 			if (i < restofsize)
 			{
-				this->tab[i] = std::rand();
+				tab[i] = (std::rand()/100)+1;
 			}
 			else
 			{
-				this->tab[i] = i;
+				tab[i] = i;
 			}
 		}
 	}
 	else if (percent<0)
 	{
-		for (int i = size; i >= 0; i--)
+		for (int i = _size; i >= 0; i--)
 		{
 						
-				this->tab[size-i] = i;
+				tab[_size-i] = i;
 			
 		}
 	}
 
 }
 
-void IntigerArr::setsize(int size)
-{
-	this->size = size;
-}
 
-void IntigerArr::setmemory(int size)
+
+void IntigerArr::setmemory(int _size)
 {
-	if (this->size==0)
+	if (_size==0)
 	{
 		std::cout << "memory cant be alocated";
 	}
-	else
+	else if (_size<100000)
 	{
-		this->tab = new int[this->size];
+		tab = new int[_size*10];
+	}
+	else if (_size >= 100000)
+	{
+		tab = new int[_size * 2];
 	}
 }
 
@@ -62,7 +63,7 @@ IntigerArr::~IntigerArr()
 	//	std::cout << tab[i] << " ";
 	//}
 
-	delete[] this->tab;
+	delete[] tab;
 	
 }
 
@@ -79,7 +80,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -88,7 +89,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -97,7 +98,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -106,7 +107,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -115,7 +116,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -124,7 +125,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -133,7 +134,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -142,7 +143,7 @@ Arrofarr::Arrofarr(int _size,double rand)
 		{
 			for (int i = 0; i < amount; i++)
 			{
-				this->arr[i].setsize(size);
+				
 				this->arr[i].setmemory(size);
 				this->arr[i].randomize(size, rand);
 			}
@@ -150,61 +151,63 @@ Arrofarr::Arrofarr(int _size,double rand)
 	
 }
 
-void Arrofarr::Quicks()
+double Arrofarr::Quicks()
 {
 	double timeaver = 0.0;
 	for (int i = 0; i < this->amount; i++)
 	{
 		std::chrono::high_resolution_clock clock;
 		auto start = clock.now();
-		this->q.quicksort_al(this->arr[i].tab, 0, this->arr->size - 1);
+		this->q.quicksort_al(this->arr[i].tab, 0, this->size - 1);
 		auto end = clock.now();
 		auto timespan = static_cast<std::chrono::duration<double>>(end - start);
 		timeaver += timespan.count();
-		this->arr[i].isSorted();
+		this->arr[i].isSorted(this->size);
 	}
-	std::cout << (timeaver / (double)this->amount) << std::endl;
+	return timeaver;
 }
 
 
-void Arrofarr::Merge()
+double Arrofarr::Merge()
 {
 	double timeaver = 0.0;
 
 	for (int i = 0; i < this->amount; i++)
 	{
 		
-		int* tab_pom = new int[this->arr[i].size];
+		int* tab_pom = new int[this->size];
 		std::chrono::high_resolution_clock clock;
 		auto start = clock.now();
-		this->m.divideandsort(this->arr[i].tab, 0, this->arr->size - 1,tab_pom);
+		this->m.divideandsort(this->arr[i].tab, 0, this->size - 1,tab_pom);
 		auto end = clock.now();
 		auto timespan = static_cast<std::chrono::duration<double>>(end - start);
 		timeaver += timespan.count();
-		this->arr[i].isSorted();
+		this->arr[i].isSorted(this->size);
 		delete[] tab_pom;
 	}
-	std::cout << (timeaver / (double)this->amount)<<std::endl;
+	return timeaver;
+	
 }
 
-void Arrofarr::Intro()
+double Arrofarr::Intro()
 {
 	double timeaver = 0.0;
 	for (int i = 0; i < this->amount; i++)
 	{
 		std::chrono::high_resolution_clock clock;
 		auto start = clock.now();
-		this->in.introsort_al(this->arr[i].tab, 0, this->arr->size - 1,in.depthlimit);
+		this->in.introsort_al(this->arr[i].tab, 0, this->size - 1,in.depthlimit);
 		auto end = clock.now();
 		auto timespan = static_cast<std::chrono::duration<double>>(end - start);
 		timeaver += timespan.count();
-		this->arr[i].isSorted();
+		this->arr[i].isSorted(this->size);
 	}
-	std::cout << (timeaver / (double)this->amount) << std::endl;
+	return timeaver;
 }
 
 Arrofarr::~Arrofarr()
 {
+	std::cout << "arr--";
 	delete[] this->arr;
 	
 }

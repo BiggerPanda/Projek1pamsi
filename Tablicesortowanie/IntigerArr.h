@@ -12,18 +12,17 @@ auto Compbigtosm = [](auto& a, auto& b) {return a >= b; };
 class IntigerArr
 {
 public:
-	int size = 0;
+	
 	int *tab;
 	IntigerArr();
 	void randomize(int size,double percent);
-	void setsize(int size);
 	void setmemory(int size);
 	~IntigerArr();
 
 	
-	void isSorted() 
+	void isSorted(int size) 
 	{
-		for (int count = 0; count < this->size; count++)
+		for (int count = 0; count < size; count++)
 		{
 
 			if(Compsmtbig(this->tab[count - 1], this->tab[count]))
@@ -54,9 +53,9 @@ class Arrofarr
 	Introsort in;
 	Arrofarr(int size,double rand);
 	
-	void Quicks();
-	void Merge();
-	void Intro();
+	double Quicks();
+	double Merge();
+	double Intro();
 	~Arrofarr();
 };
 

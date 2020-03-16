@@ -2,17 +2,26 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
+#include <memory>
+#include "IntigerArr.h"
+
 class Menu
 {
-	const std::string PATH = "L:\Pamsi";
-	double time_quick;
-	double time_merge;
-	double time_intro;
+	
+	
+	Arrofarr array_of_arrays;
 
+	
+	
 public: 
-	void savetime(double time);
-	void WritetoFile();
-	void Create();
-	void SaveFile();
+	enum typeOfSorting
+	{
+		Quick,
+		Merge,
+		Intro
+	};
+	
+
+	
 };
 
