@@ -13,15 +13,11 @@ class QuicksSort {
 public:
 	
 	template<typename I>
-	void quicksort_al(I* tab, I left, I right)
+	int Partition(I* tab, int left, int right)
 	{
-		if (right <= left)
-		{
-			return;
-		}
 		I pivot = tab[(left + right) / 2];
-		I i = left - 1;
-		I j = right + 1;
+		int i = left - 1;
+		int j = right + 1;
 		while (true)
 		{
 
@@ -29,25 +25,24 @@ public:
 
 			while (pivot < tab[--j]);
 
-			if (i <= j)
-			{
-				swap(tab[i], tab[j]);
+			if (i >= j) {
+				return j;
 			}
-			else
-			{
-				break;
-			}
-
-
+			swap(tab[i],tab[j]);
 
 		}
-		if (j > left)
+	}
+
+	template<typename I>
+	void quicksort_al(I* tab, int left, int right)
+	{
+		if (left<right)
 		{
-			quicksort_al(tab, left, j);
+			int pivot = Partition(tab, left, right);
+			quicksort_al(tab, left, pivot);
+			quicksort_al(tab, pivot + 1, right);
+		
 		}
-		if (i < right)
-		{
-			quicksort_al(tab, i, right);
-		}
+
 	}
 };

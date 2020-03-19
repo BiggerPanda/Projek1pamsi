@@ -7,7 +7,7 @@ class Mergesort {
 	int size;
 public:
 	template<typename I>
-	void merge(I* tab, I right, I left, I mid, I* tab_pom)
+	void merge(I* tab, int left, int right, int mid, I* tab_pom)
 	{
 
 
@@ -54,7 +54,7 @@ public:
 
 
 	template<typename I>
-	void divideandsort(I* tab, I left, I right, I* tab_pom)
+	void divideandsort(I* tab, int left, int right, I* tab_pom)
 	{
 		if (right <= left) { return; }
 

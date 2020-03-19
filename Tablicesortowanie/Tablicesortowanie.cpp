@@ -72,27 +72,27 @@ int main()
 	double typeofArray[] = { -1,0,25,50,75,95,99,99.7 };
     
    
-	for (auto y : typeofArray)
-	{
-		for (auto x : sizeOfArrays)
-		{
-			Arrofarr* arr = new Arrofarr(x, y);
-			Driver(Menu::Quick, *arr,y);
-			delete arr;
-			
-		}
-	}
+	//for (auto y : typeofArray)
+	//{
+	//	for (auto x : sizeOfArrays)
+	//	{
+	//		Arrofarr* arr = new Arrofarr(x, y);
+	//		Driver(Menu::Quick, *arr,y);
+	//		delete arr;
+	//		
+	//	}
+	//}
 
-	for (auto y : typeofArray)
-	{
-		for (auto x : sizeOfArrays)
-		{
-			Arrofarr* arr = new Arrofarr(x, y);
-			Driver(Menu::Merge, *arr, y);
-			delete arr;
+	//for (auto y : typeofArray)
+	//{
+	//	for (auto x : sizeOfArrays)
+	//	{
+	//		Arrofarr* arr = new Arrofarr(x, y);
+	//		Driver(Menu::Merge, *arr, y);
+	//		delete arr;
 
-		}
-	}
+	//	}
+	//}
 
 	for (auto y : typeofArray)
 	{

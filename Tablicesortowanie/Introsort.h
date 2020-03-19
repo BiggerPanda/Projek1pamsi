@@ -4,14 +4,14 @@
 
 
 class Introsort {
-	
+	QuicksSort q;
 	int size;
 public :
-	int depthlimit=0;
+	int depthlimit= (int)std::floor(2 * std::log2(this->size));
 	template<typename I>
-	void introsort_al(I* tab, I left, I right,I depthlimit)
+	void introsort(I* tab, int left, int right,int depthlimit)
 	{
-		depthcalcu(right);
+		
 		if(right-left>16)
 		{
 			if (this->depthlimit==0)
@@ -19,17 +19,23 @@ public :
 				Heapsort(tab, left, right);
 			}
 			this->depthlimit--;
-			I pivot = tab[(left + right) / 2];
-			swap(pivot,tab[right]);
 			I p = this->Partition(tab, left, right);
-			introsort_al(tab, p+1, right, this->depthlimit);
-			introsort_al(tab, left, p-1, this->depthlimit);
+			introsort(tab, p+1, right, this->depthlimit);
+			introsort(tab, left, p, this->depthlimit);
 		}
 		else
 		{
 			Insertionsort(tab, left, right);
 		}
+		
 
+	}
+
+	template<typename I>
+	void introsort_al(I* tab, int left, int right, int depthlimit)
+	{
+		depthcalcu(right);
+		introsort(tab, left, right, this->depthlimit);
 	}
 
 
@@ -39,11 +45,11 @@ public :
 	template<typename I>
 	void depthcalcu(I right)
 	{
-		this->depthlimit = (int)std::floor(2*std::log10(right));
+		this->depthlimit = (int)std::floor(2*std::log2(right));
 	}
 
 	template<typename I>
-	void Insertionsort(I* tab,I left,I right)
+	void Insertionsort(I* tab,int left,int right)
 	{
 		for(int i=left;i<=right;i++)
 		{
@@ -60,79 +66,73 @@ public :
 	}
 	
 	template<typename I>
-	void Heapsort(I* tab, I left, I right)
+	void Heapsort(I* tab, int left, int right)
 	{
-		I heapN =int(right - left);
-		Heaptree(tab, left, right, heapN);
-		for (int i = heapN; i >= 1; i--)
+		
+		++right;
+		I* temporary = new I[right - left];
+		for(int i = 0;i<right-left;i++)
 		{
-			I templeft = left + 1;
-			swap(left, templeft);
+			temporary[i] = tab[left + i];
+		}
+		for (int i = (right - left) / 2 - 1; i >= 0; i--)
+		{
+			Heaptree(temporary, left, right, i);
+		}
+		for (int i = (right - left) / 2 - 1; i >= 0; i--)
+		{
+			swap(temporary[0], temporary[i]);
+			Heaptree(temporary, 0, i, 0);
+		}
+		for (int i = 0; i < right - left; i++)
+		{
+			tab[left + i] = temporary[i];
+		}
+		delete[] temporary;
+	}
 
-			int temp = tab[left + i - 1];
-			int child;
-			while (i <= heapN / 2)
-			{
-				child = 2 * i;
-				if (child < heapN && tab[left + child - 1] < tab[left + child + 1])
-				{
-					child++;
-				}
-				if (temp >= tab[left + child - 1])
-				{
-					break;
+	template<typename I>
+	void Heaptree(I* tab, int left, int right,int heapN)
+	{
+		int size = right - left;
+		int largest = heapN;
+		int child_left = 2 * heapN + 1;
+		int child_right = 2 * heapN + 2;
 
-				}
-				tab[left + i - 1] = tab[left + child - 1];
-				i = child;
-			}
-			tab[left + i - 1] = temp;
+		if (child_left<size&& tab[child_left]>tab[largest])
+		{
+			largest = child_left;
+		}
+		if (child_right<size&&tab[child_right]>tab[largest])	
+		{
+			largest = child_right;
+		}
+		if(largest!=heapN)
+		{
+			swap(tab[heapN], tab[largest]);
+			Heaptree(tab, left, right, largest);
 		}
 
 	}
 
 	template<typename I>
-	void Heaptree(I* tab, I left, I right,I heapN)
+	int Partition(I* tab, int left, int right)
 	{
-		for (int i = heapN/2; i>=1; i--)
-		{
-			int temp = tab[left + i - 1];
-			int child;
-			while(i<=heapN/2)
-			{
-				child = 2 * i;
-				if (child < heapN && tab[left + child - 1] < tab[left + child + 1])
-				{
-					child++;
-				}
-				if (temp>=tab[left+child-1])
-				{
-					break;
-
-				}
-				tab[left + i - 1] = tab[left + child - 1];
-				i = child;
-			}
-			tab[left + i - 1] = temp;
-		}
-
-	}
-
-	template<typename I>
-	I Partition(I* tab, I left, I right)
-	{
-		I i, j;
-	
 		I pivot = tab[(left + right) / 2];
-		i = (left - 1);
-		for (j=left; j < right; j++)
+		I i = left - 1;
+		I j = right + 1;
+		while (true)
 		{
-			if (tab[j] < pivot) {
-				i++;
-				swap(tab[i], tab[j]);
+
+			while (pivot > tab[++i]);
+
+			while (pivot < tab[--j]);
+
+			if (i >= j) {
+				return j;
 			}
+			swap(tab[i],tab[j]);
+
 		}
-		swap(tab[i + 1], tab[right]);
-		return (i + 1);
 	}
 };
