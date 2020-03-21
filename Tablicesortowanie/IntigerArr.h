@@ -51,6 +51,9 @@ class Arrofarr
 	QuicksSort q;
 	Mergesort m;
 	Introsort in;
+	double timequick;
+	double timeintro;
+	double timemerge;
 	Arrofarr(int size,double rand);
 	
 	double Quicks();

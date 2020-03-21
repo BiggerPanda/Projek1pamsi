@@ -8,15 +8,17 @@
 #include"Introsort.h"
 #include "Menu.h"
 
-std::string PATH = "L:/Pamsi/";
-std::string EXTENSION = ".txt";
-std::string NAME = "timecount";
-std::string SORTNAMEquicksort = "quicksort";
-std::string SORTNAMEmerge = "mergesort";
-std::string SORTNAMEintrosort = "introsort";
+std::string const PATH = "L:/Pamsi/";
+std::string const EXTENSION = ".txt";
+std::string const EXTENSION2 = ".csv";
+std::string const NAME = "timecount";
+std::string const SORTNAMEquicksort = "quicksort";
+std::string const SORTNAMEmerge = "mergesort";
+std::string const SORTNAMEintrosort = "introsort";
 
 void CreateFile(double time, Menu::typeOfSorting type, int size, double typeofarray)
 {
+	
 	if (type ==Menu::Quick)
 	{
 
@@ -71,41 +73,51 @@ int main()
 	int sizeOfArrays[] = { 10000,50000,100000,500000,1000000 };
 	double typeofArray[] = { -1,0,25,50,75,95,99,99.7 };
     
-   
-	//for (auto y : typeofArray)
-	//{
-	//	for (auto x : sizeOfArrays)
-	//	{
-	//		Arrofarr* arr = new Arrofarr(x, y);
-	//		Driver(Menu::Quick, *arr,y);
-	//		delete arr;
-	//		
-	//	}
-	//}
-
-	//for (auto y : typeofArray)
-	//{
-	//	for (auto x : sizeOfArrays)
-	//	{
-	//		Arrofarr* arr = new Arrofarr(x, y);
-	//		Driver(Menu::Merge, *arr, y);
-	//		delete arr;
-
-	//	}
-	//}
+	std::ofstream FILE_outcsv(PATH + NAME + EXTENSION2);
 
 	for (auto y : typeofArray)
 	{
 		for (auto x : sizeOfArrays)
 		{
+			std::cout << "quick" << std::endl;
+			Arrofarr* arr = new Arrofarr(x, y);
+			Driver(Menu::Quick, *arr,y);
+			FILE_outcsv << "type" << "," << "size" << "," << "time for all" <<"," <<"Quick" << "\n";
+			FILE_outcsv << y << "," << x << "," << arr->timequick << "\n";
+			delete arr;
+			
+		}
+	}
+
+	for (auto y : typeofArray)
+	{
+		for (auto x : sizeOfArrays)
+		{
+			std::cout << "merge" << std::endl;
+			Arrofarr* arr = new Arrofarr(x, y);
+			Driver(Menu::Merge, *arr, y);
+			FILE_outcsv << "type" << "," << "size" << "," << "time for all" << ","<<"Merge" << "\n";
+			FILE_outcsv << y << "," << x << "," << arr->timemerge << "\n";
+			delete arr;
+
+		}
+	}
+
+	for (auto y : typeofArray)
+	{
+		for (auto x : sizeOfArrays)
+		{
+			std::cout << "intro" << std::endl;
 			Arrofarr* arr = new Arrofarr(x, y);
 			Driver(Menu::Intro, *arr, y);
+			FILE_outcsv << "type" << "," << "size" << "," << "time for all" <<","<<"Intro" << "\n";
+			FILE_outcsv << y << "," << x << "," << arr->timeintro << "\n";
 			delete arr;
 
 		}
 	}
   
- 
+	FILE_outcsv.close();
       
    
 

@@ -62,7 +62,7 @@ public:
 
 		divideandsort(tab, mid + 1, right, tab_pom);
 		divideandsort(tab, left, mid, tab_pom);
-		merge(tab, right, left, mid, tab_pom);
+		merge(tab, left, right, mid, tab_pom);
 
 	}
 };

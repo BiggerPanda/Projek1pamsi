@@ -163,7 +163,9 @@ double Arrofarr::Quicks()
 		auto timespan = static_cast<std::chrono::duration<double>>(end - start);
 		timeaver += timespan.count();
 		this->arr[i].isSorted(this->size);
+		
 	}
+	this->timequick = timeaver;
 	return timeaver;
 }
 
@@ -175,16 +177,20 @@ double Arrofarr::Merge()
 	for (int i = 0; i < this->amount; i++)
 	{
 		
+		
 		int* tab_pom = new int[this->size];
 		std::chrono::high_resolution_clock clock;
 		auto start = clock.now();
-		this->m.divideandsort(this->arr[i].tab, 0, this->size - 1,tab_pom);
+		this->m.divideandsort(this->arr[i].tab, 0, this->size - 1, tab_pom);
 		auto end = clock.now();
 		auto timespan = static_cast<std::chrono::duration<double>>(end - start);
 		timeaver += timespan.count();
 		this->arr[i].isSorted(this->size);
 		delete[] tab_pom;
+		
+		
 	}
+	this->timemerge = timeaver;
 	return timeaver;
 	
 }
@@ -201,13 +207,15 @@ double Arrofarr::Intro()
 		auto timespan = static_cast<std::chrono::duration<double>>(end - start);
 		timeaver += timespan.count();
 		this->arr[i].isSorted(this->size);
+
 	}
+	this->timeintro = timeaver;
 	return timeaver;
 }
 
 Arrofarr::~Arrofarr()
 {
-	std::cout << "arr--";
+	
 	delete[] this->arr;
 	
 }
